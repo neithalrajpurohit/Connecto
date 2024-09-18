@@ -96,10 +96,10 @@ const App = () => {
   }, []);
 
   const getRtpCapabilities = () => {
-    socket.emit('createRoom', (data: any) => {
-      console.log(data, 'rtpcapabilities');
+    socket.emit('createRoom', (rtpCapabilities: any) => {
+      console.log(rtpCapabilities, 'rtpcapabilities');
       // setting ref to use it later,setting it becauase it shudnt get lost
-      rtpCapabilities.current = data.rtpCapabilities;
+      rtpCapabilities.current = rtpCapabilities.rtpCapabilities;
       getDevice();
     });
   };
@@ -156,7 +156,8 @@ const App = () => {
           return;
         }
         console.log(data.params, 'ddd');
-        //creates a new webrtc transpport to send media ,based on servers producer transport params
+        //creates a new webrtc transpport to send media ,based on servers producer
+        // transport params
         producerTransport.current = deviceRef.current.createSendTransport(
           data.params,
         );

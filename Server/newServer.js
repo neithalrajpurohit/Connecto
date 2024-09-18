@@ -74,7 +74,6 @@ io.on("connection", async (socket) => {
       console.log(rtpCapabilities);
     }
     getRtpCapabilities(callback);
-    console.log("hellooooo");
   });
   // creating a transport
   // If sender is true it is a producer,when it becomes false it becomes consumer
@@ -95,7 +94,6 @@ io.on("connection", async (socket) => {
     "transport-produce",
     async ({ kind, rtpParameters, appData }, callback) => {
       producer = await producerTransport.produce({ kind, rtpParameters });
-      console.log(producer, "pp");
       console.log(producer.id, producer.kind, "producer id");
       producer.on("transportclose", () => {
         console.log("transport for this producer is closed");
@@ -110,7 +108,6 @@ io.on("connection", async (socket) => {
   });
   socket.on("consumer", async (data, callback) => {
     try {
-      console.log(producer, "producerIdiii");
       if (
         router.canConsume({
           producerId: producer.id,
